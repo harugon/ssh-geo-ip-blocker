@@ -40,7 +40,7 @@ ssh-geo-ip-blocker[1228777]: 2022/08/14 17:48:03 Deny sshd connection from 52.22
 sshd[1228775]: refused connect from 52.229.29.153 (52.229.29.153)
 ssh-geo-ip-blocker[1228849]: 2022/08/14 17:48:27 Deny sshd connection from 49.88.112.73 (Country:CN)
 sshd[1228847]: refused connect from 49.88.112.73 (49.88.112.73)
-ip-blocking[1228923]: 2022/08/14 17:48:58 Deny sshd connection from 124.156.0.88 (Country:IN)
+ssh-geo-ip-blocker[1228923]: 2022/08/14 17:48:58 Deny sshd connection from 124.156.0.88 (Country:IN)
 ```
 ## memo
 
