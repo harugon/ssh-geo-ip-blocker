@@ -1,0 +1,34 @@
+name: Release
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+      - name: Download GeoLite2-Country Database
+        run: |
+          curl -L -o GeoLite2-Country.tar.gz "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=${{ secrets.MAXMIND_LICENSE_KEY }}&suffix=tar.gz"
+          tar -zxvf GeoLite2-Country.tar.gz
+          mv GeoLite2-Country_*/GeoLite2-Country.mmdb ${{ github.workspace }}/src/GeoLite2-Country.mmdb
+      - name: Install dependencies
+        run: go get .
+      - name: Build
+        run: go build -o ssh-geo-ip-blocker -v main.go
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: ssh-geo-ip-blocker
+          path: ./ssh-geo-ip-blocker
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ssh-geo-ip-blocker
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

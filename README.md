@@ -48,13 +48,11 @@ ssh-geo-ip-blocker[1228923]: 2022/08/14 17:48:58 Deny sshd connection from 124.1
 1 (ALLOW) or 0  (DENY)　を返す必要あり
 ```
 
-```shell
-$env:GOOS="linux"
-$env:GOARCH="amd64"
-```
-windowsでbuildする場合
-
 ## Link
 * [StoneDotのいろいろ: Ubuntu で日本以外からのSSHアクセスを拒否する \(GeoIP2 Python API ver\.\)](http://stonedot.blogspot.com/2014/05/ubuntu-ssh-geoip2-python-api-ver.html)
 * [oschwald/geoip2\-golang: Unofficial MaxMind GeoIP2 Reader for Go](https://github.com/oschwald/geoip2-golang)
 * [Ubuntu Manpage: hosts\_options \- host access control language extensions](http://manpages.ubuntu.com/manpages/bionic/man5/hosts_options.5.html)
+
+## Disclaimer
+This product includes GeoLite2 data created by MaxMind, available from
+[https://www.maxmind.com](https://www.maxmind.com).
