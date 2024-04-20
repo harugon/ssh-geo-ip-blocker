@@ -24,24 +24,24 @@ func main() {
 	argsIp := flag.Arg(0)
 	if argsIp == "" {
 		log.Printf("Error:Arg\n")
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	db, err := geoip2.FromBytes(mmdb)
 	if err != nil {
 		log.Printf("Error:geoip2.FromBytes\n")
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	ip := net.ParseIP(argsIp)
 	if ip == nil {
 		log.Printf("Error:ParseIP\n")
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	record, err := db.Country(ip)
 	if err != nil {
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	haystack := []string{"JP", ""}
@@ -50,12 +50,12 @@ func main() {
 	if response {
 		//許可
 		log.Printf("%s sshd connection from %s (Country:%s)\n", access(response), argsIp, record.Country.IsoCode)
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	//不許可
 	log.Printf("%s sshd connection from %s (Country:%s)\n", access(response), argsIp, record.Country.IsoCode)
-	os.Exit(0)
+	os.Exit(1)
 }
 
 func access(b bool) string {
